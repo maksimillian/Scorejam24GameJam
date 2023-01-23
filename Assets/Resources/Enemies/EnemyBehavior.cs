@@ -9,6 +9,7 @@ public class EnemyBehavior : MonoBehaviour
     private GameObject _shellPrefab;
     private SpriteRenderer image;
 
+    internal float scoreForElim;
     internal Sprite enemySprite;
     internal Sprite bulletSprite;
     internal float maxHealth;
@@ -33,6 +34,7 @@ public class EnemyBehavior : MonoBehaviour
 
     public void Init(EnemyProfiler enemyProfiler)
     {
+        scoreForElim = enemyProfiler.scoreForElim;
         enemySprite = enemyProfiler.enemySprite;
         bulletSprite = enemyProfiler.enemyBulletSprite;
         enemySize = enemyProfiler.enemySize;

@@ -174,6 +174,7 @@ public class DestroyState : IFsmState
     {
         Debug.Log("Start to Destroy");
         Explode();
+        MainShip.Instance.AddScore(_enemyBehavior.scoreForElim);
     }
 
     public void OnUpdate()

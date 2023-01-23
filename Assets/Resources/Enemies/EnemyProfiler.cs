@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "new Enemy", menuName = "Enemies")]
 public class EnemyProfiler : ScriptableObject
 {
+    public float scoreForElim;
     public Sprite enemySprite;
     public Sprite enemyBulletSprite;
     public float enemySize;

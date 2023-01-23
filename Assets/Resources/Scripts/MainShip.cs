@@ -7,6 +7,7 @@ public class MainShip : MonoBehaviour, IDamagable
     public float MaxHealth = 10f;
     public float SpeedMod = 1f;
     public float DamageMod = 1f;
+    public float score = 0f;
 
     private static MainShip _instance;
     private float health = 100;
@@ -156,7 +157,13 @@ public class MainShip : MonoBehaviour, IDamagable
         if (health <= 0)
         {
             //GameOver
+            //TODO: Send score
         }
+    }
+
+    public void AddScore(float score)
+    {
+        this.score += score;
     }
 }
 

@@ -15,9 +15,9 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < 1; i++)
+        for (int i = 0; i < 5; i++)
         {
-            SpawnEnemy();   
+            SpawnEnemy();
         }
     }
 
@@ -27,7 +27,8 @@ public class EnemySpawner : MonoBehaviour
 
         if (spawnTimer >= spawnInterval)
         {
-            //SpawnEnemy();
+            SpawnEnemy();
+            spawnInterval *= 0.999f;            
             spawnTimer = 0f; // Reset the spawn timer
         }
     }
@@ -49,16 +50,28 @@ public class EnemySpawner : MonoBehaviour
 
     private EnemyProfiler GetRandomEnemyProfiler()
     {
-        //chanses
-        int randomValue = Random.Range(0, 3);
-        randomValue = 2;
-        return enemyProfilers[randomValue].profiler;
+        int totalChances = 0;
+        int[] chances = new int[enemyProfilers.Count];
+        for (int i = 0; i < enemyProfilers.Count; i++)
+        {
+            totalChances += enemyProfilers[i].spawnChance;
+            chances[i] = totalChances;
+        }
+        int randomValue = Random.Range(0, totalChances);
+        for (int i = 0; i < chances.Length; i++)
+        {
+            if (randomValue < chances[i])
+            {
+                return enemyProfilers[i].profiler;
+            }
+        }
+        return null;
     }
 }
 
 [Serializable]
 public class EnemyProfilersInfo
 {
-    public float weight;
+    public int spawnChance;
     public EnemyProfiler profiler;
 }
