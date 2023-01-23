@@ -3,11 +3,12 @@ using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class MainShip : MonoBehaviour
+public class MainShip : MonoBehaviour, IDamagable
 {
-    public float HP;
-    public float Speed;
-    public float DamageModifier;
+    private static MainShip _instance;
+    private float health = 100;
+
+    public static MainShip Instance { get { return _instance; } }
 
     [SerializeField] public GameObject Left;
     [SerializeField] public GameObject Right;
@@ -24,6 +25,15 @@ public class MainShip : MonoBehaviour
 
     private void Awake()
     {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+        
         _leftWeapon = Left.GetComponent<IWeaponSlot>();
         _rightWeapon = Right.GetComponent<IWeaponSlot>();
     }
@@ -114,6 +124,20 @@ public class MainShip : MonoBehaviour
             return;
 
         weaponSlot.Mount(firstOrNothing);
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        CheckIfDead();
+    }
+
+    private void CheckIfDead()
+    {
+        if (health <= 0)
+        {
+            //GameOver
+        }
     }
 }
 

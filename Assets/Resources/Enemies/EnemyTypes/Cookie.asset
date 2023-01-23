@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbc57a4ccad526247ae6185a73aa8d7b, type: 3}
+  m_Name: Cookie
+  m_EditorClassIdentifier: 
+  enemySprite: {fileID: 21300000, guid: 48c52939bd880764abc58b8573dc39f4, type: 3}
+  enemyBulletSprite: {fileID: 21300000, guid: 50be882e28f4440459ca14bdd6145e7e, type: 3}
+  enemySize: 3
+  enemyShellsSize: 2.5
+  shootingRate: 2
+  health: 10
+  healthRegenSpeed: 0
+  speed: 15
+  requiredDistanceToFire: 80
+  requiredDistanceToFeelComfortable: 60
+  rotationDegree: 233
+  spawnOffset: 1.2
+  weapon: 1

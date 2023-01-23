@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbc57a4ccad526247ae6185a73aa8d7b, type: 3}
+  m_Name: Horse
+  m_EditorClassIdentifier: 
+  enemySprite: {fileID: 21300000, guid: 9fff18f205321254f8918137184af13a, type: 3}
+  enemyBulletSprite: {fileID: 21300000, guid: 4d5a5f7e7fce4f74d9925c960d7316dd, type: 3}
+  enemySize: 10
+  enemyShellsSize: 0.01
+  shootingRate: 5
+  health: 50
+  healthRegenSpeed: 0
+  speed: 8
+  requiredDistanceToFire: 250
+  requiredDistanceToFeelComfortable: 200
+  rotationDegree: -90
+  spawnOffset: 40
+  weapon: 3
