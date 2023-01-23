@@ -104,6 +104,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b7d3bc88e49a8743948be0355eea18e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxHealth: 10
+  SpeedMod: 1
+  DamageMod: 1
   Left: {fileID: 8200221309352393877}
   Right: {fileID: 4692943139644658540}
   stoppingDistance: 15
@@ -355,7 +358,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4792640490752025755}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -6, z: 0}
+  m_LocalPosition: {x: 0, y: -4.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -390,6 +393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a1fff51e894455fa05bc1ad07d35162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainShip: {fileID: 3410220420767217481}
   dropShotSide: {x: 0, y: -1}
 --- !u!1 &8200221309352393877
 GameObject:

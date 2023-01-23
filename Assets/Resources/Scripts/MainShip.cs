@@ -203,3 +203,11 @@ public interface IWeaponSlot
         Damage,
         Health
     }
+
+    public enum BulletType
+    {
+        Default,
+        Cookie,
+        Destroyer,
+        Troy
+    }
