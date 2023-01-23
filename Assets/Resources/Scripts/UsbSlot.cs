@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class UsbSlot : MonoBehaviour, IUsbSlot
 {
+    [SerializeField] public MainShip mainShip;
     [SerializeField] public Vector2 dropShotSide;
     public IUsb _connectedUsb;
     private Dictionary<IUsb, float> _usbsInRange;
@@ -83,7 +84,10 @@ public class UsbSlot : MonoBehaviour, IUsbSlot
 
         if (Math.Abs(loadingProgress - 1f) < 0.003f)
         {
-            _connectedUsb.CompleteDownload();
+            var completeDownload = _connectedUsb.CompleteDownload();
+            var effect = completeDownload.Item1;
+            var value = completeDownload.Item2;
+            mainShip.ApplyModifier(effect, value);
             Drop();
         }
     }

@@ -12,7 +12,7 @@ public class GameLifeScope : MonoBehaviour
         _leaderboard = gameObject.GetComponent<ILeaderboard>();
         PlayMusic().Forget();
     }
-    
+
     public void LoadGame()
     {
         SceneManager.LoadScene(1);

@@ -5,9 +5,11 @@ using UnityEngine.Serialization;
 
 public class MainShip : MonoBehaviour
 {
-    public float HP;
-    public float Speed;
-    public float DamageModifier;
+    public float MaxHealth = 10f;
+    public float SpeedMod = 1f;
+    public float DamageMod = 1f;
+
+    private float currentHP = 10f;
 
     [SerializeField] public GameObject Left;
     [SerializeField] public GameObject Right;
@@ -31,6 +33,22 @@ public class MainShip : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    public void ApplyModifier(UsbEffect effect, float mod)
+    {
+        switch (effect)
+        {
+            case UsbEffect.Damage:
+                DamageMod += mod;
+                break;
+            case UsbEffect.Speed:
+                SpeedMod += mod;
+                break;
+            case UsbEffect.Health:
+                MaxHealth += mod;
+                break;
+        }
     }
 
     void Update()
@@ -84,7 +102,7 @@ public class MainShip : MonoBehaviour
         }
         else
         {
-            _leftWeapon.Fire();
+            _leftWeapon.Fire(DamageMod);
         }
     }
     
@@ -96,7 +114,7 @@ public class MainShip : MonoBehaviour
         }
         else
         {
-            _rightWeapon.Fire();
+            _rightWeapon.Fire(DamageMod);
         }
     }
     
@@ -122,7 +140,7 @@ public interface IWeaponSlot
         IWeapon GetFirstOrNothing();
         void Mount(IWeapon weapon);
         bool IsEmpty();
-        void Fire();
+        void Fire(float damageMod);
         void Drop();
     }
 
@@ -134,7 +152,7 @@ public interface IWeaponSlot
 
     public interface IWeapon
     {
-        void Fire();
+        void Fire(float damageMod);
         GameObject GetParent();
     }
     
@@ -143,6 +161,13 @@ public interface IWeaponSlot
         void StartDownload();
         float GetLoadingProgress();
         bool IsAlreadyDownloaded();
-        void CompleteDownload();
+        Tuple<UsbEffect, float> CompleteDownload();
         GameObject GetParent();
+    }
+    
+    public enum UsbEffect
+    {
+        Speed,
+        Damage,
+        Health
     }

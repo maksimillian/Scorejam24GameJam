@@ -90,5 +90,5 @@ public class WeaponSlot : MonoBehaviour, IWeaponSlot
 
     public bool IsEmpty() => _weaponMounted == null;
 
-    public void Fire() => _weaponMounted?.Fire();
+    public void Fire( float damageMod) => _weaponMounted?.Fire(damageMod);
 }
