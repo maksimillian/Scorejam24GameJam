@@ -7,19 +7,12 @@ using UnityEngine.Serialization;
 
 public class Usb : MonoBehaviour, IUsb
 {
-    [SerializeField] public float timeToDownload;
+    [SerializeField] public float value = 0.2f;
+    [SerializeField] public float timeToDownload = 10f;
     [SerializeField] public UsbEffect effect;
     private float _startDownloadingTime;
     private bool _used;
 
-
-    public enum UsbEffect
-    {
-        Speed,
-        Damage,
-        Health
-    }
-    
     public void StartDownload()
     {
         if (_startDownloadingTime != 0) return;
@@ -32,10 +25,10 @@ public class Usb : MonoBehaviour, IUsb
         return Mathf.Clamp((Time.realtimeSinceStartup - _startDownloadingTime) / timeToDownload, 0f, 1f);
     }
 
-    public void CompleteDownload()
+    public Tuple<UsbEffect, float> CompleteDownload()
     {
         _used = true;
-        Debug.Log($"You have increased {effect}");
+        return Tuple.Create<UsbEffect, float>(effect, value);
     }
 
     public bool IsAlreadyDownloaded() => _used;

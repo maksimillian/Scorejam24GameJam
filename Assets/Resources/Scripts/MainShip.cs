@@ -1,10 +1,13 @@
 
 using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class MainShip : MonoBehaviour, IDamagable
 {
+    public float MaxHealth = 10f;
+    public float SpeedMod = 1f;
+    public float DamageMod = 1f;
+
     private static MainShip _instance;
     private float health = 100;
 
@@ -33,7 +36,7 @@ public class MainShip : MonoBehaviour, IDamagable
         {
             _instance = this;
         }
-        
+
         _leftWeapon = Left.GetComponent<IWeaponSlot>();
         _rightWeapon = Right.GetComponent<IWeaponSlot>();
     }
@@ -41,6 +44,22 @@ public class MainShip : MonoBehaviour, IDamagable
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    public void ApplyModifier(UsbEffect effect, float mod)
+    {
+        switch (effect)
+        {
+            case UsbEffect.Damage:
+                DamageMod += mod;
+                break;
+            case UsbEffect.Speed:
+                SpeedMod += mod;
+                break;
+            case UsbEffect.Health:
+                MaxHealth += mod;
+                break;
+        }
     }
 
     void Update()
@@ -94,7 +113,7 @@ public class MainShip : MonoBehaviour, IDamagable
         }
         else
         {
-            _leftWeapon.Fire();
+            _leftWeapon.Fire(DamageMod);
         }
     }
     
@@ -106,7 +125,7 @@ public class MainShip : MonoBehaviour, IDamagable
         }
         else
         {
-            _rightWeapon.Fire();
+            _rightWeapon.Fire(DamageMod);
         }
     }
     
@@ -146,7 +165,7 @@ public interface IWeaponSlot
         IWeapon GetFirstOrNothing();
         void Mount(IWeapon weapon);
         bool IsEmpty();
-        void Fire();
+        void Fire(float damageMod);
         void Drop();
     }
 
@@ -158,7 +177,7 @@ public interface IWeaponSlot
 
     public interface IWeapon
     {
-        void Fire();
+        void Fire(float damageMod);
         GameObject GetParent();
     }
     
@@ -167,6 +186,13 @@ public interface IWeaponSlot
         void StartDownload();
         float GetLoadingProgress();
         bool IsAlreadyDownloaded();
-        void CompleteDownload();
+        Tuple<UsbEffect, float> CompleteDownload();
         GameObject GetParent();
+    }
+    
+    public enum UsbEffect
+    {
+        Speed,
+        Damage,
+        Health
     }

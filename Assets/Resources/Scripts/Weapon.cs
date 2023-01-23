@@ -6,9 +6,9 @@ using UnityEngine;
 public class Weapon : MonoBehaviour, IWeapon
 {
     public float damage = 10f;
-    public void Fire()
+    public void Fire(float damageMod)
     {
-        Debug.Log($"piu {damage}hp dealt");
+        Debug.Log($"piu {damage * damageMod}hp dealt");
     }
 
     public GameObject GetParent() => gameObject;
