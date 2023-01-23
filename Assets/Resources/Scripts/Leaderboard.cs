@@ -42,7 +42,10 @@ public class Leaderboard : MonoBehaviour, ILeaderboard
 
                 LootLockerLeaderboardMember[] members = response.items;
 
-                for (int i = 0; i < members.Length; i++)
+                // top 10
+                var max = Mathf.Min(members.Length, 10);
+
+                for (int i = 0; i < max; i++)
                 {
                     tempPlayerNames += members[i].rank + ". ";
                     if(members[i].player.name != "")

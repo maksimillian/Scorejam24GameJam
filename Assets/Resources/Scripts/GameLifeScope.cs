@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GameLifeScope : MonoBehaviour
@@ -10,6 +11,16 @@ public class GameLifeScope : MonoBehaviour
         _authentication = gameObject.GetComponent<Authentication>();
         _leaderboard = gameObject.GetComponent<ILeaderboard>();
         PlayMusic().Forget();
+    }
+    
+    public void LoadGame()
+    {
+        SceneManager.LoadScene(1);
+    }
+    
+    public void LoadMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 
     async UniTask PlayMusic()
